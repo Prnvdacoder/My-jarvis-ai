@@ -1,0 +1,224 @@
+import pyttsx3 as tts
+import speech_recognition as sr
+import pyjokes
+engine = tts.init()
+tr = sr.Recognizer()
+
+
+def say(x):
+    engine.say(x)
+    engine.runAndWait()
+
+
+def choc():
+    import speech_recognition as pr
+    with pr.Microphone() as source:
+        tr.adjust_for_ambient_noise(source, duration=0.017)
+        print("listening")
+        try:
+            audio = tr.listen(source, timeout=1, phrase_time_limit=3)
+            text = tr.recognize_google(audio)
+            order = text
+            print(order)
+            if "Jarvis" in order:
+                order = order.replace("Jarvis", "")
+                if "play" in order:
+                    import pywhatkit
+                    chili = order.replace("play", "")
+                    say("playing" + chili)
+                    print("Playing" + chili)
+                    pywhatkit.playonyt(chili)
+                elif "screenshot" in order:
+                    import pywhatkit
+                    print("taking screenshot")
+                    say("taking screenshot")
+                    pywhatkit.take_screenshot("10")
+                elif "search up" in order:
+                    import pywhatkit
+                    lenk = order.replace("search up", "")
+                    say("searching up" + lenk)
+                    print("Searching up" + lenk)
+                    pywhatkit.search(lenk)
+                elif "search" in order:
+                    import pywhatkit
+                    lenk = order.replace("search", "")
+                    say("searching up" + lenk)
+                    print("Searching up" + lenk)
+                    pywhatkit.search(lenk)
+                elif "code Ragnarok" in order:
+                    import pywhatkit
+                    say("Your device shuts down in T-minus 3 minutes, enter q to cancel ragnarok")
+                    print("Your device shuts down in T-minus 3 minutes, enter q to cancel ragnarok")
+                    pywhatkit.shutdown(300)
+                    q = input("enter q when you want shutdown to stop")
+                    if q == "q":
+                        pywhatkit.cancel_shutdown()
+                    say("Shutdown has been Cancelled!")
+                elif "tell me about" in order:
+                    import pywhatkit
+                    sen = order.replace("tell me about", "")
+                    pywhatkit.info(sen, 10)
+                elif "calculator" in order:
+                    print("1. Add")
+                    print("2. Multiply")
+                    print("3. Divide")
+                    print("4. Subtract")
+                    print("5. Exponents")
+                    crev = input("What function would you like to do?, enter the number")
+                    c = float(input("What is your first no.?"))
+                    if crev == "1":
+                        n = float(input("What is your second no.?, or, in case of exponents, power to?"))
+                    print(c + n)
+                    say("The answer is " + str(c + n))
+                    if crev == "2":
+                        n = float(input("What is your second no.?, or, in case of exponents, power to?"))
+                    print(c * n)
+                    say("The answer is " + str(c * n))
+                    if crev == "3":
+                        n = float(input("What is your second no.?, or, in case of exponents, power to?"))
+                    print(c / n)
+                    say("The answer is " + str(c / n))
+                    if crev == "4":
+                        n = float(input("What is your second no.?, or, in case of exponents, power to?"))
+                    print(c - n)
+                    say("The answer is " + str(c - n))
+                    if crev == "5":
+                        n = float(input("What is your second no.?, or, in case of exponents, power to?"))
+                    print(c ** n)
+                    say("The answer is " + str(c ** n))
+                elif 'time' in order:
+                    import datetime as dt
+                    t = dt.datetime.now()
+                    if t.hour > 12:
+                        hn = t.hour - 12
+                    else:
+                        hn = t.hour
+                    k = hn, t.minute
+                    print(hn, ":", t.minute)
+                    say(k)
+
+                elif 'date' in order:
+                    import datetime
+
+                    f = datetime.datetime.now()
+                    say(f.month)
+                    say(f.day)
+                    say(f.year)
+                    print(f.month)
+                    print(f.day)
+                    print(f.year)
+                elif "down" in order or "joke" in order:
+                    k = pyjokes.get_joke()
+                    print(k)
+                    say(k)
+                elif "does pineapple belong on pizza" in order:
+                    say("yes")
+                    print("yes")
+                elif "good morning" in order:
+                    import pywhatkit
+                    import datetime
+
+                    say("good morning, master Pranav")
+                    print("good morning, master Pranav")
+                    l = datetime.datetime.now()
+                    say("it's about...")
+                    say(l.hour)
+                    say(l.minute)
+                    print("it's about...")
+                    print(l.hour)
+                    print(l.minute)
+                    pywhatkit.playonyt("Wellerman")
+                elif 'hungry' in order:
+                    import pywhatkit
+                    print("ok, looking up nearby resteraunts")
+                    say("ok, looking up nearby resteraunts")
+                    pywhatkit.search("restaraunts near me")
+                elif "thank you" in order:
+                    say("You're welcome")
+                elif 'Notepad' in order:
+                    print("opening notepad")
+                    say("opening notepad")
+                    import os
+                    os.startfile("notepad")
+                elif "WhatsApp" in order:
+                    import pywhatkit
+                    say("alright, opening Whatsapp")
+                    pywhatkit.open_web()
+                elif "brainstorm" in order:
+                    import pyttsx3
+                    import speech_recognition as sr
+
+                    engine = pyttsx3.init()
+
+                    def s(x):
+                        engine.say(x)
+                        engine.runAndWait()
+
+                    recognizer = sr.Recognizer()
+
+                    def pizza():
+                        with sr.Microphone() as source:
+                            recognizer.adjust_for_ambient_noise(source, duration=0.017)
+                            print("yes mind wanderer? imagener?")
+                            aud = recognizer.listen(source)
+                            text = recognizer.recognize_google(aud)
+                            print(text)
+                            if 'brainstormer One' in text:
+                                text.replace("brainstormer One", "")
+                            if 'Notepad' in text:
+                                import os
+                                os.startfile('Notepad')
+                        if 'brainstormer one' in text:
+                            if 'ideas' in text:
+                                s("Ideas about what?")
+                                with sr.Microphone() as source:
+                                    recognizer.adjust_for_ambient_noise(source, duration=0.017)
+                                    print("yes?")
+                                    audio = recognizer.listen(source)
+                                    ti = recognizer.recognize_google(audio)
+                                    print(ti)
+                                    if 'school' in ti:
+                                        s("ok, pulling up ideas for school")
+                                        pywhatkit.search("School ideas")
+                                    if 'science' in ti:
+                                        s("ok, pulling up scientific ideas")
+                                        pywhatkit.search("science ideas")
+                                    if 'coding' in ti or 'python' in ti:
+                                        s("ok, pulling up coding ideas")
+                                        pywhatkit.search("python ideas")
+
+                    pizza()
+
+                elif 'dice' in order:
+                    import random
+
+                    vech = random.randrange(start=1, stop=6)
+                    print(vech)
+                    say("Your number is" + str(vech))
+                elif 'NASA' in order:
+                    import webbrowser as wb
+                    wb.open("www.nasa.gov")
+                elif 'Disney Plus' in order:
+                    import webbrowser as wb
+                    wb.open("www.disneyplus.com")
+                elif 'udemy' in order:
+                    import webbrowser as wb
+                    wb.open("https://udemy.com")
+                elif 'guitar' in order:
+                    import webbrowser as wb
+                    wb.open("https://github.com")
+        except Exception:
+            pass
+while True:
+    choc()
+
+import datetime as dt
+import pywhatkit
+
+jk = dt.datetime.now()
+while True:
+    while jk.hour > 21:
+        while jk.hour == 7:
+            print("Good morning sir, its time to wake up")
+            say("Good morning sir, its time to wake up")
+            pywhatkit.playonyt("loud annoying sounds")
